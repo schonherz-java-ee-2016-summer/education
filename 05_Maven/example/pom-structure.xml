@@ -1,0 +1,252 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven's POM model version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        The meta-information of your project's Maven artifact
+    -->
+    <groupId>hu.schonherz.training</groupId>
+    <artifactId>example-pom</artifactId>
+    <version>0.0.1</version>
+    <name>Example POM File</name>
+    <description>Not a real project, yo. Just an commented out POM.</description>
+
+    <!--
+        Under <properties> you can define your own "variables" (properties) to use elsewhere in this
+        POM or in a module POM.
+
+        Example:
+        <properties>
+            <my.property>1.4.0</my.property>
+        </properties>
+        .
+        .
+        .
+        (somewhere else in the POM)
+        <dependency>
+            <groupId>some.dependency.group</groupId>
+            <artifactId>some-dependency</artifactId>
+            <version>${my.property}</version>     <-- version will be evaluated as 1.4.0. Notice the enclosing '${}'
+        </dependency>
+    -->
+    <properties>
+        <!-- Tells Maven what encoding to use to process source files and resources -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Tells Maven what encoding to use when Maven creates its own files -->
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+    </properties>
+
+    <!--
+        Information about the developers of this project
+        This information will be available on the project's site
+        when generated with 'mvn site'.
+    -->
+    <developers>
+        <developer>
+            <name>Robert Discoteque</name>
+            <email>bobbydisco@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Valyogveto Arisztotelesz</name>
+            <email>ocsemilyennevet@gmail.com</email>
+        </developer>
+    </developers>
+
+    <!-- Information about the source-control repository of this project -->
+    <scm>
+        <url>https://gaalgergo@bitbucket.org/gaalgergo/beosztas-manager.git</url>
+    </scm>
+
+    <!--
+        Project dependencies.
+        Without these, your project can not be compiled and ran.
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>sqltool</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.39</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--
+        Maven plugins to use during the building of the project.
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <!--
+                    Every plugin can be configured inside its <configuration> tag.
+                    Consult the plugin's documentation (website) to learn how can
+                    you configure that particular plugin.
+                -->
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+
+                <!--
+                    You can specify when would you like some goals
+                    of the plugin to be executed during the Maven build
+                    lifecycle.
+
+                    In this case, we bind the 'enforce' goal of
+                    the maven-enforcer-plugin to be executed in the
+                    'validate' phase.
+
+                    You can even provide a plugin configuration which will only be used
+                    at this particular execution.
+                -->
+                <executions>
+                  <execution>
+                    <id>enforce-versions</id>
+                    <phase>validate</phase>
+                    <goals>
+                      <goal>enforce</goal>
+                    </goals>
+                    <configuration>
+                      <rules>
+                        <requireJavaVersion>
+                          <version>1.7</version>
+                        </requireJavaVersion>
+                      </rules>
+                    </configuration>
+                  </execution>
+                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>gaal.gergo.beosztasmanager.megjelenites.BeosztasManagerAblak</mainClass>
+                                    <addClasspath>true</addClasspath>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--
+        The generated website of the project can be extended with
+        custom reports.
+
+        These reports are generated by (surprise!) Maven plugins.
+        Inside <reporting>, you can specify plugins which can generate some kind
+        of report during 'mvn site'.
+    -->
+    <reporting>
+        <plugins>
+            <!--
+                The maven-javadoc-plugin is responsible for generating a website
+                from your JavaDoc comments in the source.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!--
+                The maven-surefire-report-plugin is responsible for generating a generic
+                report of your unit tests.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+            <!--
+                The cobertura-maven-plugin will generate line and branch coverage reports
+                from your test results.
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <configLocation>Checkstyleconfig.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
