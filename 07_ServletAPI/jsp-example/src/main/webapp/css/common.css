@@ -1,0 +1,36 @@
+* {
+    font-family: 'Oswald';
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    border: none;
+    padding: 5px 10px;
+
+    text-transform: uppercase;
+
+    color: white;
+    background-color: #2196F3;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#app-header {
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+#app-header .material-icons {
+    margin-right: 5px;
+    color: #2196F3;
+}

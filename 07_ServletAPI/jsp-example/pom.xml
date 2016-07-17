@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>hu.schonherz.training</groupId>
+    <artifactId>jsp-example</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>Sample Webapp Using JSP</name>
+    <description>Sample application showcasing the capabilities of the JSP and Servlet APIs</description>
+
+    <developers>
+        <developer>
+            <name>Attila Gyöngyösi</name>
+            <email>attilagyongyosi0@gmail.com</email>
+            <organization>EPAM Systems</organization>
+            <roles>
+                <role>Software Engineer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.java>1.8</version.java>
+        <version.apache.lang>3.4</version.apache.lang>
+        <version.servlet.api>3.1.0</version.servlet.api>
+        <version.jsp.api>2.3.1</version.jsp.api>
+        <version.jstl.api>1.2.1</version.jstl.api>
+        <version.taglibs.impl>1.2.5</version.taglibs.impl>
+        <version.logback>1.1.7</version.logback>
+        <version.slf4j>1.7.21</version.slf4j>
+    </properties>
+
+    <dependencies>
+        <!-- Common -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.apache.lang}</version>
+        </dependency>
+        <!-- Common -->
+
+        <!-- Web -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${version.servlet.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${version.jsp.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${version.jstl.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>${version.taglibs.impl}</version>
+        </dependency>
+        <!-- Web -->
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+        <!-- Logging -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${version.java}</source>
+                    <target>${version.java}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
