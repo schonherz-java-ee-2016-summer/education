@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Custom implementation of Servlet API's {@link HttpServlet},
@@ -28,12 +27,20 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        // Fetching form data from the request.
-        // Check FormDataFilter to see what happens before control is given
-        // to this servlet!
-        Map<String, String> formData = (Map<String, String>)req.getAttribute("formData");
-        String userName = formData.get(KEY_USERNAME);
-        String password = formData.get(KEY_PASSWORD);
+
+        /*
+         * When the content type of the request is some kind of form data
+         * (so basically, key-value pairs), with the exception of multipart data (file uploads),
+         * the request body will be parsed and automatically put into the
+         * requests's parameter map.
+         *
+         * You can access them easily even when handling a POST request using
+         * getParameterMap() or getParameter(), just like you would access GET request
+         * parameters (you know, the stuff in the URL after the ?),
+         * no need to parse manually.
+         */
+        String userName = req.getParameter(KEY_USERNAME);
+        String password = req.getParameter(KEY_PASSWORD);
 
         try {
             User authenticatedUser = userService.authenticate(userName, password);
