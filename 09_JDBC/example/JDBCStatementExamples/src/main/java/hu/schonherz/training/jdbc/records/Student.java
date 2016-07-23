@@ -1,49 +1,52 @@
 package hu.schonherz.training.jdbc.records;
 
 /**
- * 
  * Transfer Object
- * 
  */
 
-public class Student{
+public class Student {
 
-	private int id;
-	private String firstName;
-	private String lastName;
+    private int id;
+    private String firstName;
+    private String lastName;
 
-	public Student(int _id, String _firstName, String _lastName) {
-		id = _id;
-		firstName = _firstName;
-		lastName = _lastName;
-	}
+    public Student(int _id, String _firstName, String _lastName) {
+        id = _id;
+        firstName = _firstName;
+        lastName = _lastName;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String _lastName) {
-		lastName = _lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String toString() {
-		return id + ":" + firstName + ":" + lastName;
-	}
+    public void setLastName(String _lastName) {
+        lastName = _lastName;
+    }
+
+    public String toString() {
+        return id + ":" + firstName + ":" + lastName;
+    }
 
 }
