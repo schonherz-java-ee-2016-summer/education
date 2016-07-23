@@ -13,8 +13,8 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext applicationContext =
                 new ClassPathXmlApplicationContext("spring-config.xml");
-//        StudentDao dao = applicationContext.getBean(StudentDao.class);
-        StudentDao dao = applicationContext.getBean("studentDaoImpl", StudentDao.class);
+        StudentDao dao = applicationContext.getBean("JDBCTempateStudentDAOImpl", StudentDao.class);
+//        StudentDao dao = applicationContext.getBean("studentDaoImpl", StudentDao.class);
         dao.addStudent(new Student(1, "rwar", "2342342"));
 
         Student student = dao.getStudent("rwar");
