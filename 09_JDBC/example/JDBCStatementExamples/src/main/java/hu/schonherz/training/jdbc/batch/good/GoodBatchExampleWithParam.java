@@ -21,13 +21,13 @@ public class GoodBatchExampleWithParam {
 
 		try (Connection connection = ConnectionHandler.getConnection();
 				PreparedStatement statement = connection.prepareStatement(sql)) {
-				connection.setAutoCommit(false);
-				for (Student student : students) {
-					statement.setString(1, student.getFirstName());
-					statement.setString(2, student.getLastName());
-					statement.addBatch();
-					System.out.println("Student: " + student.getFirstName() + " added to batch.");
-				}
+			connection.setAutoCommit(false);
+			for (Student student : students) {
+				statement.setString(1, student.getFirstName());
+				statement.setString(2, student.getLastName());
+				statement.addBatch();
+				System.out.println("Student: " + student.getFirstName() + " added to batch.");
+			}
 			statement.executeBatch();
 			System.out.println("Batch executed...");
 			connection.commit();
