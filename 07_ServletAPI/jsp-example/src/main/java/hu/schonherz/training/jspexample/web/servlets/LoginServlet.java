@@ -28,17 +28,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 
-        /*
-         * When the content type of the request is some kind of form data
-         * (so basically, key-value pairs), with the exception of multipart data (file uploads),
-         * the request body will be parsed and automatically put into the
-         * requests's parameter map.
-         *
-         * You can access them easily even when handling a POST request using
-         * getParameterMap() or getParameter(), just like you would access GET request
-         * parameters (you know, the stuff in the URL after the ?),
-         * no need to parse manually.
-         */
         String userName = req.getParameter(KEY_USERNAME);
         String password = req.getParameter(KEY_PASSWORD);
 
