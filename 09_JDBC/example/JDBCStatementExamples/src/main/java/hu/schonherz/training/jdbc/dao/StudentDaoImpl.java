@@ -10,7 +10,9 @@ import java.util.List;
 
 import hu.schonherz.training.jdbc.ConnectionHandler;
 import hu.schonherz.training.jdbc.records.Student;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class StudentDaoImpl implements StudentDao {
 
 	private Connection con;
