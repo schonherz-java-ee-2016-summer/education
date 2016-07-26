@@ -10,7 +10,7 @@ public class PostgreSQLJDBCConnector {
     Connection conn = null;
     try {
       Class.forName("org.postgresql.Driver");
-      conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Blog", "postgres", "postgre");
+      conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Blog", "postgres", "pass");
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
