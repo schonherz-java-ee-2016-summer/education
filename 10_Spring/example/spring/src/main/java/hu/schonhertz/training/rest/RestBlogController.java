@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,11 +18,12 @@ import java.util.List;
 @RequestMapping(path = "/api/blogs", produces = "application/json")
 public class RestBlogController {
 
+
     @Autowired
     private BlogJDBCTemplate blogJDBCTemplate;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity listBlogs(Model model) {
+    public ResponseEntity listBlogs() {
         List<Blog> blogs = blogJDBCTemplate.getAllBlog();
         return new ResponseEntity(blogs, HttpStatus.OK);
 
