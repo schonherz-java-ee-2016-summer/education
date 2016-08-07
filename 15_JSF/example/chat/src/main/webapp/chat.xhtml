@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <fieldset>
+        <legend>Chat - <h:outputText value="#{userBean.name}"/></legend>
+        <h:form id="Chatting">
+            <p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true"/>
+            <p:poll id="poll" interval="3" update="chatPanelUpdate"/>
+
+            <p:panel id="chatPanel" menuTitle="Title" header="Chatting" toggleable="true"
+                     style="margin-bottom: 50px;">
+                <p:scrollPanel id="scroll" widgetVar="scrollPanel" style="height: 400px" mode="native">
+                    <p:outputPanel id="chatPanelUpdate">
+                        <ui:repeat value="#{messages.messages}" var="message">
+                            <fieldset>
+                                <legend>
+                                    <h:outputText value="#{message.messageTime}">
+                                        <f:convertDateTime pattern="MM.dd HH:mm"/>
+                                    </h:outputText>
+                                    -
+                                    <h:outputText value="#{message.userName}"/>
+                                </legend>
+                                <h:outputText value="#{message.message}"/>
+                            </fieldset>
+                        </ui:repeat>
+                    </p:outputPanel>
+                </p:scrollPanel>
+            </p:panel>
+
+            <p:panel id="submitter"> <p:inputTextarea id="message" value="#{addMessage.message}"
+                                                      style="width: 95%; margin: auto;"/>
+                <p:commandButton widgetVar="senderVar" id="sender" process="@this,message"
+                                 update="message,chatPanelUpdate"
+                                 value="Send" action="#{addMessage.addMessage}"/>
+                <p:blockUI trigger="sender" block="submitter"/>
+            </p:panel>
+        </h:form>
+    </fieldset>
+</h:body>
+</html>

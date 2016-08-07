@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <fieldset>
+        <legend>Chat - <h:outputText value="#{userBean.name}"/></legend>
+        <h:form id="Chatting">
+            <p:dataTable var="message" value="#{messages.messages}" paginator="true" rows="5" reflow="true">
+                <p:column style="width:16px">
+                    <p:rowToggler />
+                </p:column>
+                <p:column headerText="Date" sortBy="#{message.messageTime}" filterBy="#{message.messageTime}"
+                          filterable="true" sortable="true">
+                    <h:outputText value="#{message.messageTime}">
+                        <f:convertDateTime pattern="YYYY.MM.dd HH:mm"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Sender" filterBy="#{message.userName}" sortBy="#{message.userName}"
+                          filterable="true">
+                    <h:outputText value="#{message.userName}"/>
+                </p:column>
+                <p:rowExpansion>
+                    <h:outputText value="#{message.message}"/>
+                </p:rowExpansion>
+                <p:summaryRow>
+                    <p:column colspan="2" style="text-align:right">
+                        <h:outputText value="Total:" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="dgdfgfdgdg">
+
+                        </h:outputText>
+                    </p:column>
+                </p:summaryRow>
+            </p:dataTable>
+
+        </h:form>
+    </fieldset>
+
+</h:body>
+
+</html>
